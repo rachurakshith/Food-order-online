@@ -1,5 +1,5 @@
  <!-- Masthead-->
-        <header class="masthead">
+ <header class="masthead">
             <div class="container h-100">
                 <div class="row h-100 align-items-center justify-content-center text-center">
                     <div class="col-lg-10 align-self-end mb-4 page-title">
@@ -28,7 +28,12 @@
         		if(isset($_SESSION['login_user_id'])){
 					$data = "where c.user_id = '".$_SESSION['login_user_id']."' ";	
 				}else{
-					$ip = isset($_SERVER['HTTP_CLIENT_IP']) ? $_SERVER['HTTP_CLIENT_IP'] : isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR'];
+					$ip = isset($_SERVER['HTTP_CLIENT_IP']) 
+						? $_SERVER['HTTP_CLIENT_IP'] 
+						: (isset($_SERVER['HTTP_X_FORWARDED_FOR']) 
+							? $_SERVER['HTTP_X_FORWARDED_FOR'] 
+							: $_SERVER['REMOTE_ADDR']);
+					$_SERVER['REMOTE_ADDR'];
 					$data = "where c.client_ip = '".$ip."' ";	
 				}
 				$total = 0;
